@@ -9,5 +9,5 @@ corner_radius_bottom_left = 150
 corner_detail = 15
 
 [resource]
-Button/font_sizes/font_size = 150
+Button/font_sizes/font_size = 133
 Button/styles/normal = SubResource("StyleBoxFlat_00w6b")

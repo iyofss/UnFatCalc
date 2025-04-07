@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://rg0rdqfdotsl"]
+[gd_scene load_steps=3 format=3 uid="uid://rg0rdqfdotsl"]
 
 [ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Buttons.tres" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://dt3pk2ocnfoiy" path="res://scripts/Main.gd" id="1_rvslj"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rvslj")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -18,42 +20,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 218.13)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button" type="Button" parent="Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "new"
 
-[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Button2" type="Button" parent="Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "settings"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="Calc" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ValuesDisplay" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc"]
 custom_minimum_size = Vector2(0, 218.13)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="ProtienLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 96
@@ -62,182 +68,235 @@ text = "Protien
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="CaloriesLabel" type="Label" parent="Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 96
 text = "Calories
-349kCal"
+1249.7kCal"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LineEdit2" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="CalcTextbox" type="LineEdit" parent="Panel/VBoxContainer/MarginContainer/Calc"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 116
 text = "156+(314*0.35)"
 alignment = 1
+flat = true
 
-[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="CalcKeyboard" type="GridContainer" parent="Panel/VBoxContainer/MarginContainer/Calc"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 18
 theme_override_constants/v_separation = 18
 columns = 4
 
-[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="ClearButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "C"
 
-[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="HistoryButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "H"
 
-[node name="Button3" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="AnsButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "ans"
 
-[node name="Button4" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Multiply" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "*"
 
-[node name="Button5" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Percent" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "%"
 
-[node name="Button6" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="OpenBracket" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "("
 
-[node name="Button7" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="CloseBracket" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = ")"
 
-[node name="Button8" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Divide" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "/"
 
-[node name="Button9" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="7" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "7"
 
-[node name="Button10" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="8" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "8"
 
-[node name="Button11" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="9" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "9"
 
-[node name="Button12" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Minus" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "-"
 
-[node name="Button13" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="4" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "4"
 
-[node name="Button14" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="5" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "5"
 
-[node name="Button15" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="6" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "6"
 
-[node name="Button16" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Plus" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
+text = "+"
 
-[node name="Button17" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="1" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 0
 theme = ExtResource("1_elqb8")
-text = "d"
-
-[node name="Button18" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_elqb8")
-text = "d"
-
-[node name="Button19" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_elqb8")
-text = "d"
-
-[node name="Button20" type="Button" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("1_elqb8")
-text = "d"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 218.13)
-layout_mode = 2
-
-[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 66
 text = "1"
 
-[node name="Button2" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="2" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "2"
+
+[node name="3" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "3"
+
+[node name="ProteinButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "P"
+
+[node name="DeleteButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "D"
+
+[node name="0" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "0"
+
+[node name="Dot" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "."
+
+[node name="CaloriesButton" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme = ExtResource("1_elqb8")
+text = "K"
+
+[node name="ButtomNav" type="HBoxContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/ButtomNav"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 66
-text = "2"
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/ButtomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 66
+text = "Graph"
