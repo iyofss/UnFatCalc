@@ -270,13 +270,11 @@ func _on_clear_button_pressed():
 	calc_textbox.text = ""
 
 func _on_history_button_pressed():
-	# Get the current text and evaluate
-	var input_text = calc_textbox.text
-	var result = evaluate_math_expression(input_text)
-	
-	# Only update if we got a valid result
-	if result != null:
-		calc_textbox.text = str(result)
+	calc_textbox.placeholder_text = ""
+	var result = evaluate_math_expression(calc_textbox.text)
+	if not is_nan(result):
+		print(str(int(result)) if result == int(result) else str(result))
+	calc_textbox.text = ""
 
 	
 	
@@ -286,84 +284,66 @@ func _on_ans_button_pressed():
 
 
 #everything bellow is vibe coding, i have no idea how it works!
-# Main evaluation function
+# Main evaluation function 
 func evaluate_math_expression(input_text: String) -> float:
-	# Clean input and convert to lowercase
-	var expr = input_text.replace(" ", "").replace("×", "*").replace("÷", "/").to_lower()
+	var expr = input_text.replace(" ", "").replace("×", "*").replace("÷", "/")
 	
-	# Process percentages first (9%4 → 9*0.04)
+	# Add implied multiplication
+	expr = _insert_implicit_multiplication(expr)
+
+	# Verify parentheses balance
+	if expr.count("(") != expr.count(")"):
+
+		_show_error("Unbalanced ()")
+		return NAN
+	
+	# Process percentages (9%4 → 9*0.04)
 	expr = _process_percentages(expr)
 	
-	# Fix implied multiplication (5(10) → 5*(10))
-	expr = _fix_implied_multiplication(expr)
+	# Debug output
+	print("Raw input: ", input_text)
+	print("Processed: ", expr)
 	
-	# Debug print the final expression
-	print("Evaluating expression: ", expr)
-	
-	# Create and parse expression
+	# Evaluate using Godot's engine (NO implied multiplication)
 	var expression = Expression.new()
-	var parse_result = expression.parse(expr, ["e", "pi"])  # Allow math constants
-	
-	if parse_result != OK:
-		_show_error(expression.get_error_text())
+	if expression.parse(expr, []) != OK:
+		_show_error("Invalid: " + expression.get_error_text())
 		return NAN
 	
-	# Execute calculation
-	var result = expression.execute([], null, true)  # Allow unsafe operations
-	
+	var result = expression.execute([], null, true)
 	if expression.has_execute_failed():
-		_show_error(expression.get_error_text())
+		_show_error("Math error")
 		return NAN
 	
-	# Return result as float
 	return float(result)
 
-# Percentage processor (9%4 → 9*0.04)
+# Insert implied multiplication
+func _insert_implicit_multiplication(expr: String) -> String:
+	var fixed_expr := ""
+	for i in range(expr.length()):
+		var current := expr[i]
+		var prev := expr[i - 1] if i > 0 else ""
+		var next := expr[i + 1] if i < expr.length() - 1 else ""
+		
+		fixed_expr += current
+
+		# Case 1: number or closing ) followed by opening (
+		if ((current.is_valid_int() or current == ")") and next == "("):
+			fixed_expr += "*"
+
+		# Case 2: closing ) followed by number
+		elif (current == ")" and next.is_valid_int()):
+			fixed_expr += "*"
+	
+	return fixed_expr
+
+
+# Percentage handler
 func _process_percentages(expr: String) -> String:
-	var i := 0
-	while i < expr.length():
-		if expr[i] == "%":
-			# Case 1: Percentage of number (9%4)
-			if i + 1 < expr.length() and _is_numeric_char(expr[i+1]):
-				var base_start = i + 1
-				var base_end = base_start
-				
-				# Find full base number
-				while base_end < expr.length() and _is_numeric_char(expr[base_end]):
-					base_end += 1
-				
-				var base_num = expr.substr(base_start, base_end - base_start)
-				if base_num.is_valid_float():
-					# Replace % with *0.01*
-					var replacement = "*" + str(float(base_num) / 100.0)
-					expr = expr.substr(0, i) + replacement + expr.substr(base_end)
-					i += replacement.length() - 1
-			
-			# Case 2: Standalone percentage (50%)
-			else:
-				expr = expr.substr(0, i) + "/100.0" + expr.substr(i + 1)
-				i += 6
-		i += 1
-	return expr
-
-# Helper to check if character is part of a number
-func _is_numeric_char(c: String) -> bool:
-	return c.is_valid_float() || c == "." || c == "-"
-
-# Fix implied multiplication
-func _fix_implied_multiplication(expr: String) -> String:
-	var new_expr := ""
-	for i in expr.length():
-		new_expr += expr[i]
-		if i + 1 < expr.length():
-			var next = expr[i + 1]
-			# Insert * between numbers and brackets
-			if (_is_numeric_char(expr[i]) && next == "(") || (expr[i] == ")" && _is_numeric_char(next)):
-				new_expr += "*"
-	return new_expr
+	return expr.replace("%", "*0.01*")
 
 # Error display
 func _show_error(msg: String):
-	calc_textbox.placeholder_text = msg.left(10)
+	calc_textbox.placeholder_text = msg.left(15)
 	calc_textbox.text = ""
-	print("Calculator Error: ", msg)
+	print("Error: ", msg)
