@@ -285,6 +285,206 @@ focus_mode = 0
 theme = ExtResource("1_elqb8")
 text = "K"
 
+[node name="History" type="Panel" parent="Panel/VBoxContainer/MarginContainer/Calc"]
+visible = false
+custom_minimum_size = Vector2(0, 1182)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ButtomNav" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav2" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav3" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav3"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav3"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav4" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav5" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav5"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav5"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav6" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav6"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav6"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav7" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav7"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav7"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav8" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav8"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav8"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav9" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav9"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav9"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
+[node name="ButtomNav10" type="HBoxContainer" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 187.845)
+layout_mode = 2
+
+[node name="Home" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav10"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Home"
+
+[node name="Graph" type="Button" parent="Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav10"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 66
+text = "Graph"
+
 [node name="ButtomNav" type="HBoxContainer" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 187.845)
 layout_mode = 2
