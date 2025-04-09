@@ -1,0 +1,43 @@
+{
+  "current": {
+	"History": [
+	  "1 + 1 = 2p",
+	  "2 + 3 = 5k",
+	  "4 * 5 = 20p"
+	],
+	"Protein": 22,
+	"Calories": 5
+  },
+  "recent": {
+	"1": {
+	  "Date": "2025-04-06",
+	  "Time": "08:55",
+	  "History": [
+		"10 + 5 = 15p",
+		"100 / 2 = 50k"
+	  ],
+	  "Protein": 15,
+	  "Calories": 50
+	},
+	"2": {
+	  "Date": "2025-04-07",
+	  "Time": "19:40",
+	  "History": [
+		"2 * 2 = 4k",
+		"1 + 1 = 2p"
+	  ],
+	  "Protein": 2,
+	  "Calories": 4
+	},
+	"3": {
+	  "Date": "2025-04-08",
+	  "Time": "22:15",
+	  "History": [
+		"3 + 3 = 6p",
+		"1 + 4 = 5k"
+	  ],
+	  "Protein": 6,
+	  "Calories": 5
+	}
+  }
+}
