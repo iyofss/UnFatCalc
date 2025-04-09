@@ -34,6 +34,20 @@ extends Control
 
 
 func _ready():
+	
+#	Eson things testin
+	#var eson = Eson.new()
+		## Load JSON data from a file
+	#if eson.load_json("res://nutries.json"):
+		#print("JSON loaded successfully!")
+	#else:
+		#print('no json bro')
+		#eson.save_json("res://nutries.json")
+	#
+	#print(eson.get_value("current")["Protein"])
+	#eson.get_value("current")["History"].append("test")
+	#eson.save_json("res://nutries.json")
+
 #	connecting the buttons to the functions
 #button_down instead of pressed because it feel better
 	_0.button_down.connect(_on_0_pressed)
@@ -241,20 +255,10 @@ func _on_close_bracket_pressed():
 	calc_textbox.insert_text_at_caret(')')
 
 func _on_protein_button_pressed():
-	if calc_textbox.has_selection():
-		calc_textbox.delete_text(calc_textbox.get_selection_from_column(), 
-		calc_textbox.get_selection_to_column())
-		calc_textbox.deselect()
-	# Insert your protein calculation logic or text here
-	calc_textbox.insert_text_at_caret('PROTEIN')  # Example
+	print('protein go brrr')
 
 func _on_calories_button_pressed():
-	if calc_textbox.has_selection():
-		calc_textbox.delete_text(calc_textbox.get_selection_from_column(), 
-		calc_textbox.get_selection_to_column())
-		calc_textbox.deselect()
-	# Insert your calories calculation logic or text here
-	calc_textbox.insert_text_at_caret('CALORIES')  # Example
+	print('calories go brrr')
 
 func _on_delete_button_pressed():
 	if calc_textbox.has_selection():
@@ -286,8 +290,17 @@ func _on_ans_button_pressed():
 #everything bellow is vibe coding, i have no idea how it works!
 # Main evaluation function 
 func evaluate_math_expression(input_text: String) -> float:
-	var expr = input_text.replace(" ", "").replace("×", "*").replace("÷", "/")
+	#var expr = input_text.replace(" ", "").replace("×", "*").replace("÷", "/")
 	
+	var expr = input_text.replace(" ", "").replace("×", "*").replace("÷", "/")
+	var allowed = "%+-*/().0123456789"
+	var clean = ""
+
+	for c in expr:
+		if c in allowed:
+			clean += c
+	expr = clean
+
 	# Add implied multiplication
 	expr = _insert_implicit_multiplication(expr)
 
@@ -322,6 +335,7 @@ func _insert_implicit_multiplication(expr: String) -> String:
 	var fixed_expr := ""
 	for i in range(expr.length()):
 		var current := expr[i]
+		@warning_ignore("unused_variable")
 		var prev := expr[i - 1] if i > 0 else ""
 		var next := expr[i + 1] if i < expr.length() - 1 else ""
 		
