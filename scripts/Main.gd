@@ -35,6 +35,9 @@ extends Control
 @onready var protien_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/ProtienLabel
 @onready var calories_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/CaloriesLabel
 
+@onready var new_button: Button = $Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer/NewButton
+
+
 
 var nutrition_data = {}	# Will hold our data
 var file_path = "user://nutries.json"
@@ -59,7 +62,9 @@ func _ready():
 		}
 		save_data(file_path)
 		print("Created new JSON file with empty structure")
-
+		
+	protien_label.text = 'Protein \n' + str(nutrition_data["current"]["Protein"])
+	calories_label.text = 'Calories \n' + str(nutrition_data["current"]["Calories"])
 
 	
 #	connecting the buttons to the functions
@@ -90,6 +95,7 @@ func _ready():
 	history_button.pressed.connect(_on_history_button_pressed)
 	ans_button.pressed.connect(_on_ans_button_pressed)
 	
+	new_button.pressed.connect(_on_new_button_pressed)
 
 func load_data(path: String):
 	var file = FileAccess.open(path, FileAccess.READ)
@@ -300,11 +306,12 @@ func _on_protein_button_pressed():
 	var result = evaluate_math_expression(calc_textbox.text)
 	if not is_nan(result):
 #		This will add the result to the Protein
-		nutrition_data["current"]["Protein"] += snapped(result, 0.001)
+		nutrition_data["current"]["Protein"] = snapped(nutrition_data["current"]["Protein"], 0.001) + snapped(result, 0.001)
 		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
 		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'p')
 		save_data(file_path)
 	calc_textbox.text = ""
+	protien_label.text = 'Protein \n' + str(nutrition_data["current"]["Protein"])
 	
 
 func _on_calories_button_pressed():
@@ -313,7 +320,7 @@ func _on_calories_button_pressed():
 	print(result)
 	if not is_nan(result):
 #		This will add the result to the calories
-		nutrition_data["current"]["Calories"] += snapped(result, 0.001)
+		nutrition_data["current"]["Calories"] = snapped(nutrition_data["current"]["Calories"], 0.001) + snapped(result, 0.001)
 		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
 		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'k')
 		save_data(file_path)
@@ -346,7 +353,9 @@ func _on_ans_button_pressed():
 	# Add your answer recall functionality here
 	pass
 
-
+func _on_new_button_pressed():
+	print('new')
+	
 #everything bellow is vibe coding, i have no idea how it works!
 # Main evaluation function 
 func evaluate_math_expression(input_text: String) -> float:
@@ -372,6 +381,9 @@ func evaluate_math_expression(input_text: String) -> float:
 	
 	# Process percentages (9%4 → 9*0.04)
 	expr = _process_percentages(expr)
+
+	# Promote integers to floats before division
+	expr = _promote_integers_to_floats_in_division(expr)
 	
 	# Debug output
 	print("Raw input: ", input_text)
@@ -415,6 +427,27 @@ func _insert_implicit_multiplication(expr: String) -> String:
 # Percentage handler
 func _process_percentages(expr: String) -> String:
 	return expr.replace("%", "*0.01*")
+	
+
+func _promote_integers_to_floats_in_division(expr: String) -> String:
+	var new_expr := ""
+	var i := 0
+	while i < expr.length():
+		if expr[i] == "/":
+			# Look back for the left number
+			var j := i - 1
+			var left := ""
+			while j >= 0 and ((expr[j] >= '0' and expr[j] <= '9') or expr[j] == "."):
+				left = expr[j] + left
+				j -= 1
+			# Only add .0 if it's a pure integer (doesn't already have a dot)
+			if left != "" and !left.contains("."):
+				expr = expr.substr(0, j + 1) + left + ".0" + expr.substr(i)
+				i += 2  # account for added ".0"
+		i += 1
+	return expr
+
+
 
 # Error display
 func _show_error(msg: String):

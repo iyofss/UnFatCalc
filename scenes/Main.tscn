@@ -29,18 +29,28 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 218.13)
+custom_minimum_size = Vector2(0, 193.95)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Panel/VBoxContainer/HBoxContainer2"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment_horizontal = 0
+
+[node name="NewButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 61
 text = "new"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer/HBoxContainer2"]
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="Panel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 0
+size_flags_horizontal = 3
+alignment_horizontal = 2
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 41
 text = "settings"
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer"]
