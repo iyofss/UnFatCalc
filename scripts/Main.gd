@@ -32,10 +32,36 @@ extends Control
 @onready var history_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/HistoryButton
 @onready var ans_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/AnsButton
 
+@onready var protien_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/ProtienLabel
+@onready var calories_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/CaloriesLabel
+
+
+var nutrition_data = {}	# Will hold our data
+var file_path = "user://nutries.json"
 
 func _ready():
+	var datetime = Time.get_date_string_from_system() + '|' + Time.get_time_string_from_system()
 	
+	print(datetime)
+	
+	if FileAccess.file_exists(file_path):
+		# File exists - load it
+		load_data(file_path)
+	else:
+		# File doesn't exist - create new structure
+		nutrition_data = {
+			"current": {
+				"History": [],
+				"Protein": 0,
+				"Calories": 0
+			},
+			"recent": {}
+		}
+		save_data(file_path)
+		print("Created new JSON file with empty structure")
 
+
+	
 #	connecting the buttons to the functions
 #button_down instead of pressed because it feel better
 	_0.button_down.connect(_on_0_pressed)
@@ -64,6 +90,33 @@ func _ready():
 	history_button.pressed.connect(_on_history_button_pressed)
 	ans_button.pressed.connect(_on_ans_button_pressed)
 	
+
+func load_data(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	
+	if error == OK:
+		nutrition_data = json.data
+		print("Loaded existing data")
+	else:
+		print("JSON parse error: ", json.get_error_message())
+
+func save_data(path: String):
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	# Custom stringify to preserve order and formatting
+	var json_string = "{\n\t\"current\": {\n\t\t\"History\": %s,\n\t\t\"Protein\": %s,\n\t\t\"Calories\": %s\n\t},\n\t\"recent\": {}\n}" % [
+		JSON.stringify(nutrition_data["current"]["History"], "\t\t"),
+		nutrition_data["current"]["Protein"],
+		nutrition_data["current"]["Calories"]
+	]
+	file.store_string(json_string)
+	file.close()
+
+
 func _on_0_pressed():
 #	first it will check if there is a selection
 	if calc_textbox.has_selection() == true:
@@ -243,11 +296,29 @@ func _on_close_bracket_pressed():
 	calc_textbox.insert_text_at_caret(')')
 
 func _on_protein_button_pressed():
-	print('protein go brrr')
+	calc_textbox.placeholder_text = ""
+	var result = evaluate_math_expression(calc_textbox.text)
+	if not is_nan(result):
+#		This will add the result to the Protein
+		nutrition_data["current"]["Protein"] += snapped(result, 0.001)
+		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
+		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'p')
+		save_data(file_path)
+	calc_textbox.text = ""
+	
 
 func _on_calories_button_pressed():
-	
-	print('calories go brrr')
+	calc_textbox.placeholder_text = ""
+	var result = evaluate_math_expression(calc_textbox.text)
+	print(result)
+	if not is_nan(result):
+#		This will add the result to the calories
+		nutrition_data["current"]["Calories"] += snapped(result, 0.001)
+		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
+		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'k')
+		save_data(file_path)
+	calc_textbox.text = ""
+	calories_label.text = 'Calories \n' + str(nutrition_data["current"]["Calories"])
 
 func _on_delete_button_pressed():
 	if calc_textbox.has_selection():
