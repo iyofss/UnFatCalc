@@ -35,18 +35,6 @@ extends Control
 
 func _ready():
 	
-#	Eson things testin
-	#var eson = Eson.new()
-		## Load JSON data from a file
-	#if eson.load_json("res://nutries.json"):
-		#print("JSON loaded successfully!")
-	#else:
-		#print('no json bro')
-		#eson.save_json("res://nutries.json")
-	#
-	#print(eson.get_value("current")["Protein"])
-	#eson.get_value("current")["History"].append("test")
-	#eson.save_json("res://nutries.json")
 
 #	connecting the buttons to the functions
 #button_down instead of pressed because it feel better
@@ -258,6 +246,7 @@ func _on_protein_button_pressed():
 	print('protein go brrr')
 
 func _on_calories_button_pressed():
+	
 	print('calories go brrr')
 
 func _on_delete_button_pressed():
