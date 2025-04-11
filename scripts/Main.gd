@@ -113,14 +113,38 @@ func load_data(path: String):
 
 func save_data(path: String):
 	var file = FileAccess.open(path, FileAccess.WRITE)
-	# Custom stringify to preserve order and formatting
-	var json_string = "{\n\t\"current\": {\n\t\t\"History\": %s,\n\t\t\"Protein\": %s,\n\t\t\"Calories\": %s\n\t},\n\t\"recent\": {}\n}" % [
-		JSON.stringify(nutrition_data["current"]["History"], "\t\t"),
-		nutrition_data["current"]["Protein"],
-		nutrition_data["current"]["Calories"]
-	]
-	file.store_string(json_string)
+
+	var current = nutrition_data["current"]
+	var recent = nutrition_data["recent"]
+
+	var recent_strs = []
+	for key in recent.keys():
+		var r = recent[key]
+		var r_str = "\t\t\"%s\": {\n\t\t\t\"Date\": \"%s\",\n\t\t\t\"Time\": \"%s\",\n\t\t\t\"History\": %s,\n\t\t\t\"Protein\": %s,\n\t\t\t\"Calories\": %s\n\t\t}" % [
+			key,
+			r["Date"],
+			r["Time"],
+			JSON.stringify(r["History"], "\t\t\t"),
+			str(r["Protein"]),
+			str(r["Calories"])
+		]
+		recent_strs.append(r_str)
+
+	var final_string = "{\n"
+	final_string += "\t\"current\": {\n"
+	final_string += "\t\t\"History\": %s,\n" % JSON.stringify(current["History"], "\t\t")
+	final_string += "\t\t\"Protein\": %s,\n" % str(current["Protein"])
+	final_string += "\t\t\"Calories\": %s\n" % str(current["Calories"])
+	final_string += "\t},\n"
+	final_string += "\t\"recent\": {\n%s\n\t}\n" % String(",\n".join(recent_strs))
+	final_string += "}"
+
+	file.store_string(final_string)
 	file.close()
+
+
+
+
 
 
 func _on_0_pressed():
@@ -354,7 +378,23 @@ func _on_ans_button_pressed():
 	pass
 
 func _on_new_button_pressed():
-	print('new')
+#	this adds the things from current to a new object in recent
+	nutrition_data["recent"][nutrition_data["recent"].size() + 1] = {
+		"Date": str(Time.get_date_string_from_system()),
+		"Time": str(Time.get_time_string_from_system()),
+		"History": nutrition_data["current"]["History"].duplicate(),
+		"Protein": nutrition_data["current"]["Protein"],
+		"Calories": nutrition_data["current"]["Calories"]
+	}
+#	clears current then saves
+	nutrition_data["current"]["History"].clear()
+	nutrition_data["current"]["Calories"] = 0
+	nutrition_data["current"]["Protein"] = 0
+	
+	save_data(file_path)
+	protien_label.text = 'Protein \n' + str(nutrition_data["current"]["Protein"])
+	calories_label.text = 'Calories \n' + str(nutrition_data["current"]["Calories"])
+	
 	
 #everything bellow is vibe coding, i have no idea how it works!
 # Main evaluation function 
