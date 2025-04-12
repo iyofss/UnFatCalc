@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="UnFatCalcApp"
+run/main_scene="uid://rg0rdqfdotsl"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -22,7 +23,9 @@ window/size/window_width_override=270
 window/size/window_height_override=585
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/handheld/orientation=1
 
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
