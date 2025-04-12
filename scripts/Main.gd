@@ -30,7 +30,7 @@ extends Control
 
 @onready var clear_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/ClearButton
 @onready var history_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/HistoryButton
-@onready var ans_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/AnsButton
+@onready var Food_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard/FoodButton
 
 @onready var protien_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/ProtienLabel
 @onready var calories_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/CaloriesLabel
@@ -40,9 +40,25 @@ extends Control
 
 
 var nutrition_data = {}	# Will hold our data
+# for android: /storage/emulated/0/nutries.json
+# for pc: user://nutries.json
 var file_path = "user://nutries.json"
 
 func _ready():
+	
+	if OS.get_name() == "Android":
+		if Engine.has_singleton("AndroidPermissions"):
+			var perms = Engine.get_singleton("AndroidPermissions")
+
+			var permissions = [
+				"android.permission.READ_EXTERNAL_STORAGE",
+				"android.permission.WRITE_EXTERNAL_STORAGE"
+			]
+
+			for permission in permissions:
+				if not perms.is_permission_granted(permission):
+					perms.request_permission(permission)
+	
 	var datetime = Time.get_date_string_from_system() + '|' + Time.get_time_string_from_system()
 	
 	print(datetime)
@@ -93,7 +109,7 @@ func _ready():
 	delete_button.pressed.connect(_on_delete_button_pressed)
 	clear_button.pressed.connect(_on_clear_button_pressed)
 	history_button.pressed.connect(_on_history_button_pressed)
-	ans_button.pressed.connect(_on_ans_button_pressed)
+	Food_button.pressed.connect(_on_Food_button_pressed)
 	
 	new_button.pressed.connect(_on_new_button_pressed)
 
@@ -373,8 +389,8 @@ func _on_history_button_pressed():
 
 	
 	
-func _on_ans_button_pressed():
-	# Add your answer recall functionality here
+func _on_Food_button_pressed():
+	# this will open a page where u can put custom food to add instead of manuall typing
 	pass
 
 func _on_new_button_pressed():
