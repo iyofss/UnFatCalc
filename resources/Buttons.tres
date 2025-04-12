@@ -1,7 +1,17 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ddmfuxgvoyukb"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ddmfuxgvoyukb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00w6b"]
-bg_color = Color(0.450016, 0.628014, 0.728535, 1)
+[ext_resource type="StyleBox" uid="uid://bop0n3q22ognp" path="res://resources/ButtonNormal.tres" id="1_hl2oa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jewyw"]
+bg_color = Color(0.321772, 0.482798, 0.572539, 1)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hl2oa"]
+bg_color = Color(0.252198, 0.391164, 0.468272, 1)
 corner_radius_top_left = 150
 corner_radius_top_right = 150
 corner_radius_bottom_right = 150
@@ -10,4 +20,6 @@ corner_detail = 15
 
 [resource]
 Button/font_sizes/font_size = 133
-Button/styles/normal = SubResource("StyleBoxFlat_00w6b")
+Button/styles/hover = SubResource("StyleBoxFlat_jewyw")
+Button/styles/normal = ExtResource("1_hl2oa")
+Button/styles/pressed = SubResource("StyleBoxFlat_hl2oa")

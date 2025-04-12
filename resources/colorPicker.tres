@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dox8qh5eoenhg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kempm"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 0.858824)
+corner_radius_top_left = 65
+corner_radius_top_right = 65
+corner_radius_bottom_right = 65
+corner_radius_bottom_left = 65
+
+[resource]
+ColorPicker/constants/sv_height = 500
+ColorPicker/constants/sv_width = 500
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_kempm")
