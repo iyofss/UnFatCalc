@@ -1,17 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://rg0rdqfdotsl"]
+[gd_scene load_steps=17 format=3 uid="uid://rg0rdqfdotsl"]
 
-[ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Buttons.tres" id="1_elqb8"]
+[ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Keys/NumButtons.tres" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dt3pk2ocnfoiy" path="res://scripts/Main.gd" id="1_rvslj"]
 [ext_resource type="Texture2D" uid="uid://c28iya0antwys" path="res://icons/settings.svg" id="2_rarhs"]
+[ext_resource type="StyleBox" uid="uid://dgoa5q2b3r2cr" path="res://resources/Background.tres" id="3_bjd11"]
 [ext_resource type="Script" uid="uid://bf6u72lt4c6x1" path="res://scripts/KeyboardDisabler.gd" id="4_q8u5g"]
 [ext_resource type="Texture2D" uid="uid://bjp7igjqeetoy" path="res://icons/history.svg" id="4_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://cx5hd4wd0x21m" path="res://icons/food-scale.svg" id="5_vcsgt"]
+[ext_resource type="Theme" uid="uid://bikjjs1g8gve0" path="res://resources/Keys/ClearButtons.tres" id="6_3p2gp"]
 [ext_resource type="Script" uid="uid://coi1ltnyl0tp4" path="res://scripts/themes.gd" id="6_c01mt"]
 [ext_resource type="Theme" uid="uid://dox8qh5eoenhg" path="res://resources/colorPicker.tres" id="7_nxtc6"]
 [ext_resource type="Script" uid="uid://cge422tkce035" path="res://scripts/color_picker_button.gd" id="8_jlsqs"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c01mt"]
-bg_color = Color(0.0807833, 0.0807834, 0.0807833, 1)
+[ext_resource type="Theme" uid="uid://ck1bgeaopvydm" path="res://resources/Keys/MathSymButtons.tres" id="8_wp0k4"]
+[ext_resource type="Theme" uid="uid://c8rfytjcg550w" path="res://resources/Keys/DeleteButtons.tres" id="9_bjd11"]
+[ext_resource type="Theme" uid="uid://cu0w024e87pjj" path="res://resources/Keys/ProteinButtons.tres" id="11_cvmbd"]
+[ext_resource type="Theme" uid="uid://3fxt4ox4vvi4" path="res://resources/Keys/CaloriesButtons.tres" id="13_ft6cd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvslj"]
 
@@ -40,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c01mt")
+theme_override_styles/panel = ExtResource("3_bjd11")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
 layout_mode = 1
@@ -143,7 +146,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("6_3p2gp")
 text = "C"
 
 [node name="HistoryButton" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -151,7 +154,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("6_3p2gp")
 theme_override_constants/icon_max_width = 135
 icon = ExtResource("4_vcsgt")
 icon_alignment = 1
@@ -162,7 +165,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("6_3p2gp")
 theme_override_constants/icon_max_width = 110
 icon = ExtResource("5_vcsgt")
 icon_alignment = 1
@@ -173,7 +176,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "*"
 
 [node name="Percent" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -181,7 +184,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "%"
 
 [node name="OpenBracket" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -189,7 +192,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "("
 
 [node name="CloseBracket" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -197,7 +200,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = ")"
 
 [node name="Divide" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -205,7 +208,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "/"
 
 [node name="7" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -237,7 +240,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "-"
 
 [node name="4" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -269,7 +272,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("8_wp0k4")
 text = "+"
 
 [node name="1" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -301,7 +304,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("11_cvmbd")
 text = "P"
 
 [node name="DeleteButton" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -309,7 +312,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("9_bjd11")
 text = "D"
 
 [node name="0" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/CalcKeyboard"]
@@ -333,7 +336,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
-theme = ExtResource("1_elqb8")
+theme = ExtResource("13_ft6cd")
 text = "K"
 
 [node name="History" type="Panel" parent="Control/Panel/VBoxContainer/MarginContainer/Calc"]
@@ -606,9 +609,9 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 106
-text = "Numpad"
+text = "Background"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="BGColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -616,4 +619,146 @@ theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
 
-[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Numpad"
+
+[node name="NumColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "MathSymbols"
+
+[node name="MathSymColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Delete"
+
+[node name="DelColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Clear"
+
+[node name="ClearColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Calories"
+
+[node name="CalColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Protein"
+
+[node name="ProColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Font/icons"
+
+[node name="FontColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("7_nxtc6")
+flat = true
+script = ExtResource("8_jlsqs")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 106
+text = "Corners"
+
+[node name="HSlider" type="HSlider" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+tick_count = 100
+
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BGColorPickerButton" to="." method="_on_bg_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/NumColorPickerButton" to="." method="_on_num_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3/MathSymColorPickerButton" to="." method="_on_math_sym_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4/DelColorPickerButton" to="." method="_on_del_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9/ClearColorPickerButton" to="." method="_on_clear_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5/CalColorPickerButton" to="." method="_on_cal_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6/ProColorPickerButton" to="." method="_on_pro_color_picker_button_color_changed"]
+[connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7/FontColorPickerButton" to="." method="_on_font_color_picker_button_color_changed"]
+[connection signal="value_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8/HSlider" to="." method="_on_h_slider_value_changed"]

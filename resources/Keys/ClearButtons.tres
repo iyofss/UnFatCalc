@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bikjjs1g8gve0"]
+
+[ext_resource type="StyleBox" uid="uid://cqtti2nk3561i" path="res://resources/Keys/ClearButtonHover.tres" id="1_jjd4i"]
+[ext_resource type="StyleBox" uid="uid://bmm0vsoxf56k2" path="res://resources/Keys/ClearButtonNormal.tres" id="2_h0uf3"]
+[ext_resource type="StyleBox" uid="uid://cqjw8m6i77ri2" path="res://resources/Keys/ClearButtonPressed.tres" id="3_nl1wm"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 133
+Button/styles/hover = ExtResource("1_jjd4i")
+Button/styles/normal = ExtResource("2_h0uf3")
+Button/styles/pressed = ExtResource("3_nl1wm")

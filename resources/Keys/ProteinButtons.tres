@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cu0w024e87pjj"]
+
+[ext_resource type="StyleBox" uid="uid://dmi8xug7lx5pi" path="res://resources/Keys/ProteinButtonHover.tres" id="1_vglow"]
+[ext_resource type="StyleBox" uid="uid://b4o0frq81xkqm" path="res://resources/Keys/ProteinButtonNormal.tres" id="2_yk83y"]
+[ext_resource type="StyleBox" uid="uid://c4bwi70b0f4ln" path="res://resources/Keys/ProteinButtonPressed.tres" id="3_ua1es"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 133
+Button/styles/hover = ExtResource("1_vglow")
+Button/styles/normal = ExtResource("2_yk83y")
+Button/styles/pressed = ExtResource("3_ua1es")

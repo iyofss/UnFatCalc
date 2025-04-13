@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://3fxt4ox4vvi4"]
+
+[ext_resource type="StyleBox" uid="uid://brpiji4pousli" path="res://resources/Keys/CaloriesButtonHover.tres" id="1_lkssu"]
+[ext_resource type="StyleBox" uid="uid://d1h0tset6bfff" path="res://resources/Keys/CaloriesButtonNormal.tres" id="1_whfc8"]
+[ext_resource type="StyleBox" uid="uid://7ls0mrm0we7y" path="res://resources/Keys/CaloriesButtonPressed.tres" id="2_lkssu"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 133
+Button/styles/hover = ExtResource("1_lkssu")
+Button/styles/normal = ExtResource("1_whfc8")
+Button/styles/pressed = ExtResource("2_lkssu")

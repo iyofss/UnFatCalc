@@ -13,7 +13,7 @@ func _on_color_picker_about_to_popup():
 	# Hide all unnecessary UI elements
 	color_picker.color_modes_visible = false
 	color_picker.sliders_visible = false
-	color_picker.hex_visible = false
+	color_picker.hex_visible = true
 	color_picker.presets_visible = false
 	color_picker.sampler_visible = false
 	color_picker.edit_alpha = false
