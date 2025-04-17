@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://rg0rdqfdotsl"]
+[gd_scene load_steps=19 format=3 uid="uid://rg0rdqfdotsl"]
 
 [ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Keys/NumButtons.tres" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dt3pk2ocnfoiy" path="res://scripts/Main.gd" id="1_rvslj"]
 [ext_resource type="Texture2D" uid="uid://c28iya0antwys" path="res://icons/settings.svg" id="2_rarhs"]
 [ext_resource type="StyleBox" uid="uid://dgoa5q2b3r2cr" path="res://resources/Background.tres" id="3_bjd11"]
-[ext_resource type="Script" uid="uid://bf6u72lt4c6x1" path="res://scripts/KeyboardDisabler.gd" id="4_q8u5g"]
 [ext_resource type="Texture2D" uid="uid://bjp7igjqeetoy" path="res://icons/history.svg" id="4_vcsgt"]
 [ext_resource type="Texture2D" uid="uid://cx5hd4wd0x21m" path="res://icons/food-scale.svg" id="5_vcsgt"]
 [ext_resource type="Theme" uid="uid://bikjjs1g8gve0" path="res://resources/Keys/ClearButtons.tres" id="6_3p2gp"]
@@ -15,8 +14,20 @@
 [ext_resource type="Theme" uid="uid://c8rfytjcg550w" path="res://resources/Keys/DeleteButtons.tres" id="9_bjd11"]
 [ext_resource type="Theme" uid="uid://cu0w024e87pjj" path="res://resources/Keys/ProteinButtons.tres" id="11_cvmbd"]
 [ext_resource type="Theme" uid="uid://3fxt4ox4vvi4" path="res://resources/Keys/CaloriesButtons.tres" id="13_ft6cd"]
+[ext_resource type="Theme" uid="uid://c7xkgeqtvcjh7" path="res://resources/themeOption.tres" id="15_3p2gp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvslj"]
+
+[sub_resource type="GDScript" id="GDScript_mwfav"]
+script/source = "extends LineEdit
+
+func _ready():
+	virtual_keyboard_enabled = false
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p2gp"]
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -131,8 +142,9 @@ theme_override_font_sizes/font_size = 116
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rvslj")
 placeholder_text = "Count em here"
 alignment = 1
+virtual_keyboard_enabled = false
 flat = true
-script = ExtResource("4_q8u5g")
+script = SubResource("GDScript_mwfav")
 
 [node name="CalcKeyboard" type="GridContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc"]
 layout_mode = 2
@@ -548,6 +560,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 66
+toggle_mode = true
+button_pressed = true
 text = "Home"
 
 [node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/ButtomNav"]
@@ -596,11 +610,23 @@ theme_override_constants/margin_bottom = 75
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/Settings/VBoxContainer/MarginContainer"]
 layout_mode = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 111
+text = "Themes:"
+
+[node name="HSeparator" type="HSeparator" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+theme_override_styles/separator = SubResource("StyleBoxFlat_3p2gp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -608,13 +634,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Background"
 
 [node name="BGColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -625,13 +652,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Numpad"
 
 [node name="NumColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -642,13 +670,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "MathSymbols"
 
 [node name="MathSymColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -659,13 +688,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Delete"
 
 [node name="DelColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -676,13 +706,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Clear"
 
 [node name="ClearColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -693,13 +724,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Calories"
 
 [node name="CalColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -710,13 +742,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Protein"
 
 [node name="ProColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -727,13 +760,14 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Font/icons"
 
 [node name="FontColorPickerButton" type="ColorPickerButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
+mouse_filter = 1
 theme = ExtResource("7_nxtc6")
 flat = true
 script = ExtResource("8_jlsqs")
@@ -744,14 +778,75 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_font_sizes/font_size = 106
+theme_override_font_sizes/font_size = 86
 text = "Corners"
 
 [node name="HSlider" type="HSlider" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+mouse_filter = 1
 tick_count = 100
+
+[node name="OptionButton" type="OptionButton" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("15_3p2gp")
+theme_override_font_sizes/font_size = 131
+selected = 0
+item_count = 3
+popup/item_0/text = "Defualt"
+popup/item_0/id = 0
+popup/item_1/text = "cvsd"
+popup/item_1/id = 1
+popup/item_2/text = "wererw"
+popup/item_2/id = 2
+
+[node name="LineEdit2" type="LineEdit" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 111
+placeholder_text = "Theme Name"
+
+[node name="Button" type="Button" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "save"
+
+[node name="HSeparator2" type="HSeparator" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+theme_override_styles/separator = SubResource("StyleBoxFlat_3p2gp")
+
+[node name="Label2" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 111
+text = "Locations:"
+
+[node name="HSeparator3" type="HSeparator" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+theme_override_styles/separator = SubResource("StyleBoxFlat_3p2gp")
+
+[node name="Label3" type="Label" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 81
+text = "Themes Location:"
+
+[node name="LineEdit" type="LineEdit" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_font_sizes/font_size = 111
+text = "test"
+placeholder_text = "test"
 
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BGColorPickerButton" to="." method="_on_bg_color_picker_button_color_changed"]
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/NumColorPickerButton" to="." method="_on_num_color_picker_button_color_changed"]

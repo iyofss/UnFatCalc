@@ -58,29 +58,43 @@ var ProteinButtonNormal = load("res://resources/Keys/ProteinButtonNormal.tres") 
 var ProteinButtonPressed = load("res://resources/Keys/ProteinButtonPressed.tres") as StyleBoxFlat
 var ProteinButtonHover = load("res://resources/Keys/ProteinButtonHover.tres") as StyleBoxFlat
 
-
-#background
-#Numpad
-#MathSymbols
-#Clear
-#Delete
-#Calories
-#Protein
-#Font/icons
-
+var Theme_data = {}
+var file_path = "user://themes/themes.json"
 
 func _ready():
+	
+	if FileAccess.file_exists(file_path):
+		# File exists - load it
+		load_data(file_path)
+	else:
+		# File doesn't exist - create new structure
+		Theme_data = {
+				"Background": "#1F1F24FF",
+				"Numpad": "#3399DBFF",
+				"MathSymbols": "#E84C3DFF",
+				"Delete": "#F3A635FF",
+				"Clear": "#33BFBFFF",
+				"Calories": "#21BF9CFF",
+				"Protein": "#5C73D1FF",
+				"Font/icons": "#FFFFFFFF",
+				"Corners": 100
+		}
+		save_data(file_path)
+		print("Created new JSON file with empty structure")
+	
 	settings_button.button_down.connect(_on_settings_pressed)
 	back.button_down.connect(_on_back_pressed)
+
+	bg_color_picker_button.color = Color(Theme_data["Background"])
+	cal_color_picker_button.color = Color(Theme_data["Calories"])
+	del_color_picker_button.color = Color(Theme_data["Delete"])
+	clear_color_picker_button.color = Color(Theme_data["Clear"])
+	pro_color_picker_button.color = Color(Theme_data["Protein"])
+	num_color_picker_button.color = Color(Theme_data["Numpad"])
+	math_sym_color_picker_button.color = Color(Theme_data["MathSymbols"])
+	font_color_picker_button.color = Color(Theme_data["Font/icons"])
 	
-	bg_color_picker_button.color = Color(0.12, 0.12, 0.14)
-	cal_color_picker_button.color = Color(0.13, 0.75, 0.61)
-	del_color_picker_button.color = Color(0.95, 0.65, 0.21)
-	clear_color_picker_button.color = Color(0.20, 0.75, 0.75)
-	pro_color_picker_button.color = Color(0.36, 0.45, 0.82)
-	num_color_picker_button.color = Color(0.20, 0.60, 0.86)
-	math_sym_color_picker_button.color = Color(0.91, 0.30, 0.24)
-	font_color_picker_button.color = Color(1, 1, 1)
+#	the input 1 doesn't mean anything but i have to write somthin for the connect func for now soo
 	_on_math_sym_color_picker_button_color_changed(1)
 	_on_bg_color_picker_button_color_changed(1)
 	_on_num_color_picker_button_color_changed(1)
@@ -90,8 +104,35 @@ func _ready():
 	_on_pro_color_picker_button_color_changed(1)
 	_on_font_color_picker_button_color_changed(1)
 	_on_clear_color_picker_button_color_changed(1)
-	#BUTTON_NORMAL.bg_color = Color(0.6, 0.6, 0.6, 1)
-	#color_picker_button.get_popup().about_to_show.connect(_on_color_picker_popup_open)
+
+func save_data(path: String) -> void:
+	var json_string = JSON.stringify(Theme_data, "\t")  # Pretty-print with tabs
+	var file := FileAccess.open(path, FileAccess.WRITE)
+
+	if file == null:
+		printerr("Failed to open file for writing: ", path)
+		return
+	
+	file.store_string(json_string)
+	file.close()
+	print("Theme data saved to: ", path)
+
+
+func load_data(path: String):
+	var file = FileAccess.open(path, FileAccess.READ)
+	var json_string = file.get_as_text()
+	file.close()
+	
+	var json = JSON.new()
+	var error = json.parse(json_string)
+	
+	if error == OK:
+		Theme_data = json.data
+		print("Loaded existing data")
+	else:
+		print("JSON parse error: ", json.get_error_message())
+		
+# buttons do these:
 func _on_settings_pressed():
 	settings.visible = true
 	
