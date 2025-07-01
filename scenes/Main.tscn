@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://rg0rdqfdotsl"]
+[gd_scene load_steps=20 format=3 uid="uid://rg0rdqfdotsl"]
 
 [ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Keys/NumButtons.tres" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dt3pk2ocnfoiy" path="res://scripts/Main.gd" id="1_rvslj"]
@@ -15,6 +15,7 @@
 [ext_resource type="Theme" uid="uid://cu0w024e87pjj" path="res://resources/Keys/ProteinButtons.tres" id="11_cvmbd"]
 [ext_resource type="Theme" uid="uid://3fxt4ox4vvi4" path="res://resources/Keys/CaloriesButtons.tres" id="13_ft6cd"]
 [ext_resource type="Theme" uid="uid://c7xkgeqtvcjh7" path="res://resources/themeOption.tres" id="15_3p2gp"]
+[ext_resource type="Theme" uid="uid://cgcbr4lofp7k4" path="res://resources/HistoryItems/CaloriesHistory.tres" id="16_cvmbd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvslj"]
 
@@ -572,6 +573,7 @@ theme_override_font_sizes/font_size = 66
 text = "Graph"
 
 [node name="Settings" type="Panel" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -848,6 +850,209 @@ theme_override_font_sizes/font_size = 111
 text = "test"
 placeholder_text = "test"
 
+[node name="History" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/History"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Control/History/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 126
+text = "back"
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "Day History"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/History/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/History/VBoxContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 35
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("16_cvmbd")
+
+[node name="Item" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/Item"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "13-456+65/46"
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/Item"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/Item/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 126
+text = "= 3"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer/Item/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "  X  "
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("16_cvmbd")
+
+[node name="Item" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer2/Item"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "13-456+65/46"
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer2/Item"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer2/Item/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 126
+text = "= 3"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer2/Item/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "  X  "
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("16_cvmbd")
+
+[node name="Item" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer3/Item"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "13-456+65/46"
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer3/Item"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer3/Item/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 126
+text = "= 3"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer3/Item/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "  X  "
+
+[node name="PanelContainer4" type="PanelContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("16_cvmbd")
+
+[node name="Item" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer4/Item"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "13-456+65/46"
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer4/Item"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer4/Item/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 126
+text = "= 3"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer4/Item/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "  X  "
+
+[node name="PanelContainer5" type="PanelContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("16_cvmbd")
+
+[node name="Item" type="VBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer5/Item"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "13-456+65/46"
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer5/Item"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer5/Item/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 126
+text = "= 3"
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="Control/History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PanelContainer5/Item/HBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "  X  "
+
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BGColorPickerButton" to="." method="_on_bg_color_picker_button_color_changed"]
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/NumColorPickerButton" to="." method="_on_num_color_picker_button_color_changed"]
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3/MathSymColorPickerButton" to="." method="_on_math_sym_color_picker_button_color_changed"]
@@ -857,3 +1062,4 @@ placeholder_text = "test"
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6/ProColorPickerButton" to="." method="_on_pro_color_picker_button_color_changed"]
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7/FontColorPickerButton" to="." method="_on_font_color_picker_button_color_changed"]
 [connection signal="value_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="Control/History/VBoxContainer/Back" to="Control" method="_on_historyBack_pressed"]

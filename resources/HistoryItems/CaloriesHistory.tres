@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cgcbr4lofp7k4"]
+
+[ext_resource type="StyleBox" uid="uid://dggmuiyiunf7n" path="res://resources/Keys/DeleteButtonHover.tres" id="1_vt0eh"]
+[ext_resource type="StyleBox" uid="uid://ciitk4oeakrmk" path="res://resources/Keys/DeleteButtonNormal.tres" id="2_gsqqs"]
+[ext_resource type="StyleBox" uid="uid://0uuqmsd58qfp" path="res://resources/Keys/DeleteButtonPressed.tres" id="3_suc88"]
+[ext_resource type="StyleBox" uid="uid://xv2wr3lexedm" path="res://resources/HistoryItems/CalBox.tres" id="4_gua0q"]
+
+[resource]
+Button/styles/focus = null
+Button/styles/hover = ExtResource("1_vt0eh")
+Button/styles/normal = ExtResource("2_gsqqs")
+Button/styles/pressed = ExtResource("3_suc88")
+PanelContainer/styles/panel = ExtResource("4_gua0q")

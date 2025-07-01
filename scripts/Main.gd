@@ -37,7 +37,12 @@ extends Control
 
 @onready var new_button: Button = $Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer/NewButton
 
-
+#History Tab
+@onready var historyTab: Panel = $History
+@onready var historyBack: Button = $History/VBoxContainer/Back
+@onready var history_vbox_container: VBoxContainer = $History/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer
+@onready var cal_color_picker_button: ColorPickerButton = $Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5/CalColorPickerButton
+@onready var pro_color_picker_button: ColorPickerButton = $Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6/ProColorPickerButton
 
 var nutrition_data = {}	# Will hold our data
 # for android: /storage/emulated/0/nutries.json
@@ -380,13 +385,66 @@ func _on_clear_button_pressed():
 	# Clear the entire textbox
 	calc_textbox.text = ""
 
+# history function for all current calcies (i just made up this word)
 func _on_history_button_pressed():
-	calc_textbox.placeholder_text = ""
-	var result = evaluate_math_expression(calc_textbox.text)
-	if not is_nan(result):
-		print(str(int(result)) if result == int(result) else str(result))
-	calc_textbox.text = ""
+	for child in history_vbox_container.get_children():
+		child.queue_free()
+	historyTab.visible = true
+	var history = nutrition_data["current"]["History"]
+	for item in history:
+		
+		print(item)
+		var panel := PanelContainer.new()
+		var btn := Button.new()
+		
+		var label := Label.new()
+		var label2 := Label.new()
+		var vbox := VBoxContainer.new()
+		var hbox := HBoxContainer.new()
+		label.text = item.split("=")[0]
+		label2.text = "=" + item.split("=")[1]
+		btn.text = "  +  "
+		
+		hbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label2.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		label.autowrap_mode = 1
+		label2.autowrap_mode = 1
+		vbox.add_child(label)
+		hbox.add_child(label2)
+		
+		hbox.add_child(btn)
+		vbox.add_child(hbox)
+		panel.add_child(vbox)
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		
+		label.add_theme_font_size_override("font_size", 126)
+		label2.add_theme_font_size_override("font_size", 126)
+		btn.add_theme_font_size_override("font_size", 126)
+		btn.focus_mode = 0
+		
+#		checks which is which:
+		if item[-1] == "k":
+			panel.theme = preload("res://resources/HistoryItems/CaloriesHistory.tres")
+			label2.add_theme_color_override("font_color", cal_color_picker_button.color)
+		elif item[-1] == "p":
+			panel.theme = preload("res://resources/HistoryItems/ProteinHistory.tres")
+			label2.add_theme_color_override("font_color", pro_color_picker_button.color)
 
+		btn.pressed.connect(_on_item_btn_pressed.bind(item))
+		history_vbox_container.add_child(panel)
+		
+
+# this is the function the runs when the history item button is clicked, which will paste the thing at cursor
+func _on_item_btn_pressed(item):
+	print(item)
+	calc_textbox.insert_text_at_caret('('+ item.split("=")[0] +')')
+	historyTab.visible = false
+	
+
+# back button la
+func _on_historyBack_pressed() -> void:
+	historyTab.visible = false
 	
 	
 func _on_Food_button_pressed():
