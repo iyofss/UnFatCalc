@@ -13,7 +13,8 @@ config_version=5
 config/name="UnFatCalcApp"
 run/main_scene="uid://rg0rdqfdotsl"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cwyiy043rnaue"
+config/icon="uid://b4cil8ncy8nkp"
 
 [display]
 
