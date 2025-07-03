@@ -44,6 +44,10 @@ extends Control
 @onready var cal_color_picker_button: ColorPickerButton = $Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5/CalColorPickerButton
 @onready var pro_color_picker_button: ColorPickerButton = $Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6/ProColorPickerButton
 
+#Premeal Tab
+@onready var premealsTab: Panel = $Premeals
+
+
 var nutrition_data = {}	# Will hold our data
 # for android: /storage/emulated/0/nutries.json
 # for pc: user://nutries.json
@@ -355,6 +359,7 @@ func _on_protein_button_pressed():
 		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
 		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'p')
 		save_data(file_path)
+		calc_textbox.placeholder_text = "Count em here"
 	calc_textbox.text = ""
 	protien_label.text = 'Protein \n' + str(nutrition_data["current"]["Protein"])
 	
@@ -369,6 +374,7 @@ func _on_calories_button_pressed():
 		result = str(int(result)) if result == int(result) else str(snapped(result, 0.001))
 		nutrition_data["current"]["History"].append(calc_textbox.text + '=' + str(result) + 'k')
 		save_data(file_path)
+		calc_textbox.placeholder_text = "Count em here"
 	calc_textbox.text = ""
 	calories_label.text = 'Calories \n' + str(nutrition_data["current"]["Calories"])
 
@@ -449,7 +455,7 @@ func _on_historyBack_pressed() -> void:
 	
 func _on_Food_button_pressed():
 	# this will open a page where u can put custom food to add instead of manuall typing
-	pass
+	premealsTab.visible = true
 
 func _on_new_button_pressed():
 #	this adds the things from current to a new object in recent
@@ -591,3 +597,11 @@ func _on_data_pressed() -> void:
 	dataPage.visible = true
 	nutries_box.text = JSON.stringify(nutrition_data, "\t")
 	
+
+
+func _on_nutries_copy_button_pressed() -> void:
+	DisplayServer.clipboard_set(nutries_box.text)
+
+
+func _on_premeal_back_pressed() -> void:
+	premealsTab.visible = false

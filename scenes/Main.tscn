@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rg0rdqfdotsl"]
+[gd_scene load_steps=23 format=3 uid="uid://rg0rdqfdotsl"]
 
 [ext_resource type="Theme" uid="uid://ddmfuxgvoyukb" path="res://resources/Keys/NumButtons.tres" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://dt3pk2ocnfoiy" path="res://scripts/Main.gd" id="1_rvslj"]
@@ -30,6 +30,11 @@ func _ready():
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p2gp"]
 expand_margin_top = 2.0
 expand_margin_bottom = 2.0
+
+[sub_resource type="ImageTexture" id="ImageTexture_ft6cd"]
+
+[sub_resource type="Theme" id="Theme_bb450"]
+HSlider/icons/tick = SubResource("ImageTexture_ft6cd")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -355,206 +360,6 @@ focus_mode = 0
 theme = ExtResource("13_ft6cd")
 text = "K"
 
-[node name="History" type="Panel" parent="Control/Panel/VBoxContainer/MarginContainer/Calc"]
-visible = false
-custom_minimum_size = Vector2(0, 1182)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ButtomNav" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav2" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav2"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav2"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav3" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav3"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav3"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav4" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav4"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav4"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav5" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav5"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav5"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav6" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav6"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav6"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav7" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav7"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav7"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav8" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav8"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav8"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav9" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav9"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav9"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
-[node name="ButtomNav10" type="HBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 187.845)
-layout_mode = 2
-
-[node name="Home" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav10"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Home"
-
-[node name="Graph" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Calc/History/ScrollContainer/VBoxContainer/ButtomNav10"]
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 0
-theme_override_font_sizes/font_size = 66
-text = "Graph"
-
 [node name="Data" type="VBoxContainer" parent="Control/Panel/VBoxContainer/MarginContainer"]
 visible = false
 layout_mode = 2
@@ -585,6 +390,12 @@ text = "nutries json will be showing here, if not, oh well, sorry"
 editable = false
 wrap_mode = 1
 scroll_fit_content_height = true
+
+[node name="nutriesCopyButton" type="Button" parent="Control/Panel/VBoxContainer/MarginContainer/Data/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "copy"
 
 [node name="Label2" type="Label" parent="Control/Panel/VBoxContainer/MarginContainer/Data/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -653,7 +464,6 @@ theme_override_constants/margin_bottom = 75
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/Settings/VBoxContainer/MarginContainer"]
 layout_mode = 2
-scroll_vertical = 100
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer"]
@@ -687,6 +497,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -705,6 +516,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -723,6 +535,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -741,6 +554,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -759,6 +573,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -777,6 +592,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -795,6 +611,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -813,6 +630,7 @@ size_flags_horizontal = 3
 focus_mode = 0
 mouse_filter = 1
 theme = ExtResource("7_nxtc6")
+action_mode = 0
 flat = true
 script = ExtResource("8_jlsqs")
 
@@ -831,6 +649,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 mouse_filter = 1
+theme = SubResource("Theme_bb450")
 tick_count = 100
 
 [node name="saveButton" type="Button" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
@@ -858,6 +677,23 @@ theme_override_font_sizes/font_size = 51
 text = "themes json will be showing here, if not, oh well, sorry"
 wrap_mode = 1
 scroll_fit_content_height = true
+
+[node name="copyPaste" type="HBoxContainer" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="themeCopyButton" type="Button" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/copyPaste"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "copy"
+
+[node name="themePasteButton" type="Button" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/copyPaste"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 121
+text = "paste"
 
 [node name="applyButton" type="Button" parent="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -1112,6 +948,64 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 121
 text = "  X  "
 
+[node name="Premeals" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Premeals"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="Control/Premeals/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_font_sizes/font_size = 126
+text = "back"
+
+[node name="Label" type="Label" parent="Control/Premeals/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 126
+text = "Premeals"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Premeals/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 75
+theme_override_constants/margin_bottom = 75
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Premeals/VBoxContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Premeals/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 35
+
+[node name="Label" type="Label" parent="Control/Premeals/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/line_spacing = -125
+theme_override_font_sizes/font_size = 236
+text = "coming soon"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="Control/Panel/VBoxContainer/MarginContainer/Data/ScrollContainer/VBoxContainer/nutriesCopyButton" to="Control" method="_on_nutries_copy_button_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/ButtomNav/Home" to="Control" method="_on_home_pressed"]
 [connection signal="pressed" from="Control/Panel/VBoxContainer/ButtomNav/Data" to="Control" method="_on_data_pressed"]
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/BGColorPickerButton" to="." method="_on_bg_color_picker_button_color_changed"]
@@ -1124,6 +1018,9 @@ text = "  X  "
 [connection signal="color_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7/FontColorPickerButton" to="." method="_on_font_color_picker_button_color_changed"]
 [connection signal="value_changed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer8/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="pressed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/saveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/copyPaste/themeCopyButton" to="." method="_on_theme_copy_button_pressed"]
+[connection signal="pressed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/copyPaste/themePasteButton" to="." method="_on_theme_paste_button_pressed"]
 [connection signal="pressed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/applyButton" to="." method="_on_apply_button_pressed"]
 [connection signal="pressed" from="Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/resetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Control/History/VBoxContainer/Back" to="Control" method="_on_historyBack_pressed"]
+[connection signal="pressed" from="Control/Premeals/VBoxContainer/Back" to="Control" method="_on_premeal_back_pressed"]
