@@ -66,15 +66,15 @@ var file_path = "user://theme.json"
 func _make_file():
 			# File doesn't exist - create new structure
 		Theme_data = {
-				"Background": "#1F1F24FF",
-				"Numpad": "#3399DBFF",
-				"MathSymbols": "#E84C3DFF",
-				"Delete": "#F3A635FF",
-				"Clear": "#33BFBFFF",
-				"Calories": "#21BF9CFF",
-				"Protein": "#5C73D1FF",
-				"Font/icons": "#FFFFFFFF",
-				"Corners": 100
+			"Background": "1f1f24ff",
+			"Calories": "21bf9cff",
+			"Clear": "33bfbfff",
+			"Corners": 100,
+			"Delete": "f3a635ff",
+			"Font/icons": "ffffffff",
+			"MathSymbols": "e84c3dff",
+			"Numpad": "3399dbff",
+			"Protein": "5c73d1ff"
 		}
 		save_data(file_path)
 		print("Created new JSON file with empty structure")
@@ -464,3 +464,11 @@ func _on_reset_button_pressed() -> void:
 	theme_json_box.text = JSON.stringify(Theme_data, "\t")
 	_on_apply_button_pressed()
 #	thats a lazy way to do it
+
+
+func _on_theme_copy_button_pressed() -> void:
+	DisplayServer.clipboard_set(theme_json_box.text)
+
+
+func _on_theme_paste_button_pressed() -> void:
+	theme_json_box.text = DisplayServer.clipboard_get()
