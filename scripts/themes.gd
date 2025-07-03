@@ -1,6 +1,6 @@
 extends Node
 
-@onready var settings_button: Button = $Control/Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer2/MarginContainer/SettingsButton
+@onready var settings_button: Button = $Control/Panel/VBoxContainer/MarginContainer/Calc/HBoxContainer2/AspectRatioContainer2/MarginContainer/SettingsButton
 @onready var back: Button = $Control/Settings/VBoxContainer/Back
 @onready var settings: Panel = $Control/Settings
 
@@ -57,17 +57,14 @@ var ProteinButtons = load("res://resources/Keys/ProteinButtons.tres") as Theme
 var ProteinButtonNormal = load("res://resources/Keys/ProteinButtonNormal.tres") as StyleBoxFlat
 var ProteinButtonPressed = load("res://resources/Keys/ProteinButtonPressed.tres") as StyleBoxFlat
 var ProteinButtonHover = load("res://resources/Keys/ProteinButtonHover.tres") as StyleBoxFlat
+@onready var theme_json_box: CodeEdit = $Control/Settings/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/themeJsonBox
 
 var Theme_data = {}
-var file_path = "user://themes/themes.json"
+var file_path = "user://theme.json"
 
-func _ready():
-	
-	if FileAccess.file_exists(file_path):
-		# File exists - load it
-		load_data(file_path)
-	else:
-		# File doesn't exist - create new structure
+
+func _make_file():
+			# File doesn't exist - create new structure
 		Theme_data = {
 				"Background": "#1F1F24FF",
 				"Numpad": "#3399DBFF",
@@ -81,6 +78,45 @@ func _ready():
 		}
 		save_data(file_path)
 		print("Created new JSON file with empty structure")
+
+func _ready():
+	
+#	i might be doing unnecessary things here but who knows, if it find missing key it will reset the theme
+	if FileAccess.file_exists(file_path):
+		var file = FileAccess.open(file_path, FileAccess.READ)
+		if file:
+			var json_string = file.get_as_text()
+			file.close()
+
+			var json = JSON.new()
+			var err = json.parse(json_string)
+
+			if err == OK and typeof(json.data) == TYPE_DICTIONARY:
+				var data = json.data
+				# Check required keys, if any missing, do NOT update Theme_data or UI
+				var required_keys = ["Background", "Numpad", "MathSymbols", "Delete", "Clear", "Calories", "Protein", "Font/icons", "Corners"]
+				var all_keys_present = true
+				for key in required_keys:
+					if not data.has(key):
+						all_keys_present = false
+						print("Missing key in theme file:", key)
+						#break
+				if all_keys_present:
+					load_data(file_path)
+				else:
+					print("Theme data incomplete, skipping load.")
+					_make_file()
+			else:
+				print("Failed to parse theme file JSON.")
+				_make_file()
+		else:
+			print("Failed to open theme file.")
+			_make_file()
+	else:
+		print("File doesn't exist - create new structure")
+		_make_file()
+	
+	theme_json_box.text = JSON.stringify(Theme_data, "\t")
 	
 	settings_button.button_down.connect(_on_settings_pressed)
 	back.button_down.connect(_on_back_pressed)
@@ -93,6 +129,7 @@ func _ready():
 	num_color_picker_button.color = Color(Theme_data["Numpad"])
 	math_sym_color_picker_button.color = Color(Theme_data["MathSymbols"])
 	font_color_picker_button.color = Color(Theme_data["Font/icons"])
+	h_slider.value = Theme_data["Corners"]
 	
 #	the input 1 doesn't mean anything but i have to write somthin for the connect func for now soo
 	_on_math_sym_color_picker_button_color_changed(1)
@@ -334,3 +371,96 @@ func _on_h_slider_value_changed(value: float) -> void:
 	ClearButtonPressed.set_corner_radius(1, int(h_slider.value))
 	ClearButtonPressed.set_corner_radius(2, int(h_slider.value))
 	ClearButtonPressed.set_corner_radius(3, int(h_slider.value))
+
+
+func _on_save_button_pressed() -> void:
+	Theme_data["Background"] = bg_color_picker_button.color.to_html()
+	Theme_data["Numpad"] = num_color_picker_button.color.to_html()
+	Theme_data["MathSymbols"] = math_sym_color_picker_button.color.to_html()
+	Theme_data["Delete"] = del_color_picker_button.color.to_html()
+	Theme_data["Clear"] = clear_color_picker_button.color.to_html()
+	Theme_data["Calories"] = cal_color_picker_button.color.to_html()
+	Theme_data["Protein"] = pro_color_picker_button.color.to_html()
+	Theme_data["Font/icons"] = font_color_picker_button.color.to_html()
+	Theme_data["Corners"] = int(h_slider.value)
+
+	save_data(file_path)
+	theme_json_box.text = JSON.stringify(Theme_data, "\t")
+	print("Settings saved.")
+
+
+
+func is_valid_color_hex(hex: String) -> bool:
+	# Optional leading #, then 6 or 8 hex digits
+	var pattern = "^#?[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+	return hex.match(pattern) != null
+
+
+func _on_apply_button_pressed() -> void:
+	var json = JSON.new()
+	var error = json.parse(theme_json_box.text)
+	
+	if error != OK:
+		printerr("Invalid JSON in themeJsonBox: ", json.get_error_message())
+		return
+	
+	var data = json.data
+	
+	if data.has("Background"):
+		if typeof(data["Background"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Background"]):
+				bg_color_picker_button.color = Color(data["Background"])
+				_on_bg_color_picker_button_color_changed(1)
+
+	if data.has("Numpad"):
+		if typeof(data["Numpad"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Numpad"]):
+				num_color_picker_button.color = Color(data["Numpad"])
+				_on_num_color_picker_button_color_changed(1)
+
+	if data.has("MathSymbols"):
+		if typeof(data["MathSymbols"]) == TYPE_STRING:
+			if is_valid_color_hex(data["MathSymbols"]):
+				math_sym_color_picker_button.color = Color(data["MathSymbols"])
+				_on_math_sym_color_picker_button_color_changed(1)
+
+	if data.has("Delete"):
+		if typeof(data["Delete"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Delete"]):
+				del_color_picker_button.color = Color(data["Delete"])
+				_on_del_color_picker_button_color_changed(1)
+
+	if data.has("Clear"):
+		if typeof(data["Clear"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Clear"]):
+				clear_color_picker_button.color = Color(data["Clear"])
+				_on_clear_color_picker_button_color_changed(1)
+
+	if data.has("Calories"):
+		if typeof(data["Calories"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Calories"]):
+				cal_color_picker_button.color = Color(data["Calories"])
+				_on_cal_color_picker_button_color_changed(1)
+
+	if data.has("Protein"):
+		if typeof(data["Protein"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Protein"]):
+				pro_color_picker_button.color = Color(data["Protein"])
+				_on_pro_color_picker_button_color_changed(1)
+
+	if data.has("Font/icons"):
+		if typeof(data["Font/icons"]) == TYPE_STRING:
+			if is_valid_color_hex(data["Font/icons"]):
+				font_color_picker_button.color = Color(data["Font/icons"])
+				_on_font_color_picker_button_color_changed(1)
+	
+	if data.has("Corners"):
+		if typeof(data["Corners"]) == TYPE_INT or typeof(data["Corners"]) == TYPE_FLOAT:
+			if data["Corners"] >= 0 and data["Corners"] <= 100:
+				h_slider.value = data["Corners"]
+
+
+func _on_reset_button_pressed() -> void:
+	theme_json_box.text = JSON.stringify(Theme_data, "\t")
+	_on_apply_button_pressed()
+#	thats a lazy way to do it

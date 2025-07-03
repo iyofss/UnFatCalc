@@ -35,7 +35,7 @@ extends Control
 @onready var protien_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/ProtienLabel
 @onready var calories_label: Label = $Panel/VBoxContainer/MarginContainer/Calc/ValuesDisplay/CaloriesLabel
 
-@onready var new_button: Button = $Panel/VBoxContainer/HBoxContainer2/AspectRatioContainer/NewButton
+@onready var new_button: Button = $Panel/VBoxContainer/MarginContainer/Calc/HBoxContainer2/AspectRatioContainer/NewButton
 
 #History Tab
 @onready var historyTab: Panel = $History
@@ -568,3 +568,26 @@ func _show_error(msg: String):
 	calc_textbox.placeholder_text = msg.left(15)
 	calc_textbox.text = ""
 	print("Error: ", msg)
+
+
+
+# Bottom nav buttons
+@onready var homeButton: Button = $Panel/VBoxContainer/ButtomNav/Home
+@onready var dataButton: Button = $Panel/VBoxContainer/ButtomNav/Data
+@onready var calcPage: VBoxContainer = $Panel/VBoxContainer/MarginContainer/Calc
+@onready var dataPage: VBoxContainer = $Panel/VBoxContainer/MarginContainer/Data
+@onready var nutries_box: CodeEdit = $Panel/VBoxContainer/MarginContainer/Data/ScrollContainer/VBoxContainer/nutriesBox
+
+func _on_home_pressed() -> void:
+	dataButton.button_pressed = false
+	homeButton.button_pressed = true
+	dataPage.visible = false
+	calcPage.visible = true
+
+func _on_data_pressed() -> void:
+	homeButton.button_pressed = false
+	dataButton.button_pressed = true
+	calcPage.visible = false
+	dataPage.visible = true
+	nutries_box.text = JSON.stringify(nutrition_data, "\t")
+	
